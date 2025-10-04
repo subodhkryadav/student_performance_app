@@ -1,1 +1,1 @@
-web: gunicorn student_performance_app.app:app --bind :$PORT
+web: gunicorn app:app
