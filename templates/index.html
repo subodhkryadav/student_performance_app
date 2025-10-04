@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Performance Predictor</title>
+  <!-- Direct static/style.css -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Student Performance Predictor</h1>
+      <p>Enter your details — get a beautiful prediction instantly.</p>
+    </header>
+
+    <section class="card form-card">
+      <form id="predict-form">
+        <div class="row">
+          <label>Hours Studied</label>
+          <input type="range" id="hours_studied" name="hours_studied" min="0" max="16" step="0.5" value="5">
+          <output for="hours_studied" id="hours_val">5</output>
+        </div>
+
+        <div class="row">
+          <label>Previous Scores (0-100)</label>
+          <input type="number" id="previous_scores" name="previous_scores" min="0" max="100" step="0.1" value="70">
+        </div>
+
+        <div class="row">
+          <label>Sleep Hours (per night)</label>
+          <input type="number" id="sleep_hours" name="sleep_hours" min="0" max="12" step="0.1" value="7">
+        </div>
+
+        <div class="row">
+          <label>Sample Question Papers Practiced</label>
+          <input type="number" id="sample_papers" name="sample_papers" min="0" max="50" step="1" value="3">
+        </div>
+
+        <div class="row actions">
+          <button type="submit" class="btn primary">Predict Performance</button>
+          <button type="button" class="btn ghost" id="reset-btn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Result card (hidden until prediction) -->
+    <section class="card result-card" id="result-card" aria-hidden="true">
+      <div class="result-content">
+        <h2>Your Predicted Performance</h2>
+        <div class="gauge">
+          <div class="gauge-fill" id="gauge-fill" style="transform: rotate(0deg);"></div>
+          <div class="gauge-cover">
+            <span id="perf-value">--</span>
+            <small>Performance Index</small>
+          </div>
+        </div>
+        <p id="perf-message" class="muted"></p>
+        <div class="share-row">
+          <button id="new-btn" class="btn">Make Another Prediction</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+  <small>Developed by <strong>Subodh Kumar Yadav</strong> | Model: <code>Student_Performance_model.pickle</code></small>
+</footer>
+
+  </main>
+
+<script>
+// interactive UI behavior
+const hours = document.getElementById('hours_studied');
+const hoursVal = document.getElementById('hours_val');
+hours.addEventListener('input', () => hoursVal.textContent = hours.value);
+
+const form = document.getElementById('predict-form');
+const resultCard = document.getElementById('result-card');
+const perfValue = document.getElementById('perf-value');
+const perfMessage = document.getElementById('perf-message');
+const gaugeFill = document.getElementById('gauge-fill');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const payload = {
+    hours_studied: document.getElementById('hours_studied').value,
+    previous_scores: document.getElementById('previous_scores').value,
+    sleep_hours: document.getElementById('sleep_hours').value,
+    sample_papers: document.getElementById('sample_papers').value
+  };
+
+  // loading state
+  perfValue.textContent = '...';
+  perfMessage.textContent = 'Predicting...';
+  resultCard.setAttribute('aria-hidden', 'false');
+  resultCard.classList.add('visible');
+
+  try {
+    const resp = await fetch('/predict', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+    if (resp.ok) {
+      const val = Number(data.performance_index);
+      perfValue.textContent = val;
+      perfMessage.textContent = data.message || '';
+      // animate gauge: 0–100 → -90deg..90deg
+      const deg = (val / 100) * 180 - 90;
+      gaugeFill.style.transform = `rotate(${deg}deg)`;
+    } else {
+      perfValue.textContent = 'Error';
+      perfMessage.textContent = data.error || 'Prediction failed';
+    }
+  } catch (err) {
+    perfValue.textContent = 'Error';
+    perfMessage.textContent = err.message;
+  }
+});
+
+// reset/new prediction
+document.getElementById('new-btn').addEventListener('click', () => {
+  resultCard.classList.remove('visible');
+  resultCard.setAttribute('aria-hidden', 'true');
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  form.reset();
+  hoursVal.textContent = hours.value;
+});
+</script>
+</body>
+</html>
