@@ -5,7 +5,9 @@ import os
 
 app = Flask(__name__)
 
-# Load model (ensure the file Student_Performance_model.pickle is in project root)
+# =========================
+# Load the ML model
+# =========================
 BASE_DIR = os.path.dirname(__file__)
 MODEL_PATH = os.path.join(BASE_DIR, 'Student_Performance_model.pickle')
 
@@ -18,6 +20,9 @@ except Exception as e:
     print(f"⚠️ Warning: could not load model at {MODEL_PATH}: {e}")
 
 
+# =========================
+# Routes
+# =========================
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -29,8 +34,8 @@ def predict():
         return jsonify({'error': 'Model not loaded. Place Student_Performance_model.pickle in project root.'}), 500
 
     try:
-        # Read features from JSON
-        data = request.json
+        # Read input features from JSON
+        data = request.json or {}
         # Expected keys: hours_studied, previous_scores, sleep_hours, sample_papers
         hs = float(data.get('hours_studied', 0))
         ps = float(data.get('previous_scores', 0))
@@ -39,9 +44,11 @@ def predict():
 
         X = np.array([[hs, ps, sh, sp]])
 
-        # Predict with model
+        # =========================
+        # Prediction
+        # =========================
         try:
-            # If regression model: predict numeric Performance Index
+            # Regression prediction
             y_pred = model.predict(X)
             perf = float(y_pred[0])
             perf = round(perf, 2)
@@ -67,6 +74,10 @@ def predict():
         return jsonify({'error': f'Invalid input or server error: {e}'}), 400
 
 
+# =========================
+# Run the app
+# =========================
 if __name__ == '__main__':
-    # For local dev only; in production Koyeb will use gunicorn via Procfile
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # Use PORT from environment (for Koyeb/PA), default 5000 for local dev
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
