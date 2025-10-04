@@ -1,10 +1,10 @@
 # 🎓 Student Performance Prediction App
 
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/OWNER/REPO&branch=main&name=APP-NAME)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-Framework-green)
 ![Machine Learning](https://img.shields.io/badge/ML-Model-orange)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/OWNER/REPO&branch=main&name=APP-NAME)
 
 > 🚀 A machine learning–powered web app that predicts students' academic performance based on input features.  
 > 🧠 Built with **Flask**, deployed on **koyeb**, and trained using advanced regression models.
