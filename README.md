@@ -29,7 +29,7 @@
 The **Student Performance Prediction App** is a web-based tool designed to help educators, researchers, and students analyze and predict academic outcomes.  
 Users can input key factors (like study time, attendance, and previous scores), and the app predicts the student’s final performance using a pre-trained machine learning model.
 
-> 🌟 This project demonstrates the power of **Data Science + Web Development + Cloud Deployment**.
+> 🌟 This project demonstrates the power of **Data Science +  basic Web Development +  Basic Cloud Deployment**.
 
 ---
 
@@ -53,6 +53,7 @@ student_performance_app/
 │   └── style.css                  # Styling for the frontend
 └── templates/
     └── index.html                 # Web interface
+some other file like procfile 
 ```
 
 ---
@@ -67,7 +68,7 @@ student_performance_app/
 ### 🔹 Steps
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/student-performance-app.git
+git clone https://github.com/subodhkryadav/student-performance-app.git
 
 # 2. Navigate into the project folder
 cd student-performance-app/student_performance_app
@@ -89,7 +90,8 @@ Visit the app at: **http://127.0.0.1:5000/**
 3. Connect your GitHub repo.
 4. Set the **Start Command** as:
    ```bash
-   gunicorn app:app
+   web: gunicorn student_performance_app.app:app --bind :$PORT
+
    ```
 5. Add a `requirements.txt` and `Procfile` if needed:
    ```
@@ -104,10 +106,10 @@ Visit the app at: **http://127.0.0.1:5000/**
 > Replace below image links with your actual screenshots.
 
 ### 🏠 Home Page
-![Home Page](https://via.placeholder.com/800x400.png?text=Home+Page+Screenshot)
+![Home Page](https://github.com/subodhkryadav/student_performance_app/blob/main/templates/home.png)
 
 ### 📊 Prediction Result
-![Prediction Result](https://via.placeholder.com/800x400.png?text=Prediction+Result+Screenshot)
+![Prediction Result](https://github.com/subodhkryadav/student_performance_app/blob/main/templates/output.png)
 
 ---
 
