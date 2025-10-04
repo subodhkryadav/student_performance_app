@@ -1,13 +1,13 @@
 # 🎓 Student Performance Prediction App
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/OWNER/REPO&branch=main&name=APP-NAME)
+[![Deploy to PythonAnywhere](https://www.PythonAnywhere.com/static/images/deploy/button.svg)]
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-Framework-green)
 ![Machine Learning](https://img.shields.io/badge/ML-Model-orange)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
 > 🚀 A machine learning–powered web app that predicts students' academic performance based on input features.  
-> 🧠 Built with **Flask**, deployed on **koyeb**, and trained using advanced regression models.
+> 🧠 Built with **Flask**, deployed on **PythonAnywhere**, and trained using advanced regression models.
 
 ---
 
@@ -16,7 +16,7 @@
 - [✨ Features](#-features)
 - [📂 Project Structure](#-project-structure)
 - [⚙️ Installation](#️-installation)
-- [🚀 Deployment on koyeb](#-deployment-on-koyeb)
+- [🚀 Deployment on PythonAnywhere](#-deployment-on-PythonAnywhere)
 - [🖥️ Screenshots](#️-screenshots)
 - [🤖 Model Details](#-model-details)
 - [🛠️ Technologies Used](#️-technologies-used)
@@ -38,7 +38,7 @@ Users can input key factors (like study time, attendance, and previous scores), 
 ✅ **Real-time predictions** powered by a pre-trained ML model  
 ✅ **Flask backend** for handling requests and inference  
 ✅ **Responsive design** with custom CSS  
-✅ Easy to **deploy on koyeb**  
+✅ Easy to **deploy on PythonAnywhere**  
 ✅ Lightweight & beginner-friendly project structure  
 
 ---
@@ -84,9 +84,9 @@ Visit the app at: **http://127.0.0.1:5000/**
 
 ---
 
-## 🚀 Deployment on koyeb
+## 🚀 Deployment on PythonAnywhere
 1. Push the repository to GitHub.
-2. Create a new **Web Service** on [koyeb](https://koyeb.com/).
+2. Create a new **Web Service** on [PythonAnywhere](https://PythonAnywhere.com/).
 3. Connect your GitHub repo.
 4. Set the **Start Command** as:
    ```bash
@@ -103,7 +103,6 @@ Visit the app at: **http://127.0.0.1:5000/**
 
 ## 🖥️ Screenshots
 
-> Replace below image links with your actual screenshots.
 
 ### 🏠 Home Page
 ![Home Page](https://github.com/subodhkryadav/student_performance_app/blob/main/templates/home.png)
@@ -131,7 +130,7 @@ Visit the app at: **http://127.0.0.1:5000/**
 - **Scikit-Learn / Pickle** – Machine Learning & model storage
 - **HTML + CSS** – Frontend
 - **Gunicorn** – Production WSGI server
-- **koyeb** – Cloud deployment
+- **PythonAnywhere** – Cloud deployment
 
 ---
 
